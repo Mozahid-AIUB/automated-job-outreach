@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services &middot; Outreach Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <style>
+    .workspace-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 26px 32px 68px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .workspace-main,
+    .workspace-aside {
+      min-width: 0;
+    }
+
+    .workspace-sidebar {
+      position: sticky;
+      top: 94px;
+      padding: 18px 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(245, 244, 236, 0.96) 0%, rgba(230, 235, 221, 0.92) 100%);
+      border: 1px solid rgba(66, 84, 62, 0.12);
+      box-shadow: 0 22px 40px -28px rgba(50, 68, 45, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .workspace-brand {
+      padding: 4px 8px 18px;
+      border-bottom: 1px solid rgba(66, 84, 62, 0.08);
+      margin-bottom: 18px;
+    }
+
+    .workspace-brand .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .workspace-brand h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .workspace-brand p {
+      color: var(--text-2);
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .workspace-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .workspace-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      color: var(--text-2);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+      transition: all 0.2s ease;
+    }
+
+    .workspace-nav-item:hover {
+      border-color: rgba(66, 84, 62, 0.12);
+      color: var(--text);
+      transform: translateX(2px);
+    }
+
+    .workspace-nav-item.active {
+      background: linear-gradient(135deg, var(--accent) 0%, #607a58 100%);
+      color: #f7f6ef;
+      box-shadow: 0 14px 24px -18px rgba(60, 74, 58, 0.8);
+    }
+
+    .workspace-nav-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .workspace-nav-copy strong {
+      font-size: 13px;
+      letter-spacing: 0.2px;
+    }
+
+    .workspace-nav-copy span {
+      font-size: 11px;
+      opacity: 0.82;
+      line-height: 1.45;
+    }
+
+    .workspace-nav-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .workspace-main {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .workspace-topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 6px 4px 2px;
+    }
+
+    .workspace-topbar h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -1.2px;
+    }
+
+    .workspace-topbar p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--text-2);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    .batch-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .batch-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .batch-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .batch-actions {
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .batch-buttons {
+        flex-direction: row;
+      }
+    }
+
+    .workspace-utility {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(66, 84, 62, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .workspace-utility-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .workspace-utility-pill::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    }
+
+    .workspace-compose,
+    .mail-panel {
+      overflow: hidden;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px -16px rgba(34, 60, 40, 0.12);
+    }
+
+    .compose-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(66, 84, 62, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(244, 245, 235, 0.35) 100%);
+    }
+
+    .compose-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .compose-title small,
+    .panel-title {
+      color: var(--accent);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .compose-title strong {
+      color: var(--text);
+      font-size: 20px;
+      letter-spacing: -0.4px;
+    }
+
+    .tabs {
+      display: inline-flex;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.48);
+      border: 1px solid rgba(66, 84, 62, 0.1);
+      border-radius: 999px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+    }
+
+    .tab-btn {
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--text-2);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(60, 74, 58, 0.18);
+    }
+
+    .compose-body {
+      padding: 28px 28px 28px;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .file-field {
+      position: relative;
+    }
+
+    .file-field input[type="file"] {
+      display: none;
+    }
+
+    .file-pick {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      background: #ffffff;
+      border: 1px dashed #c5cdc1;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+
+    .file-pick:hover {
+      border-color: var(--accent);
+      background: var(--accent-softer);
+    }
+
+    .file-pick-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-softer);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .file-pick-name {
+      flex: 1;
+      font-weight: 500;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-pick-name.empty {
+      color: #9ba59b;
+      font-weight: 400;
+    }
+
+    .file-clear {
+      font-size: 11px;
+      color: var(--text-3);
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+
+    .file-clear:hover {
+      color: var(--error);
+      border-color: var(--error);
+    }
+
+    .ai-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-left: 10px;
+    }
+
+    .ai-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .helper-text {
+      margin: 10px 0 0;
+      color: var(--text-3);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .optional-tag {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: var(--accent-softer);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .source-shell {
+      margin-top: 6px;
+      padding: 18px;
+      border: 1px solid var(--accent-soft);
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--accent-softer) 0%, #ffffff 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .source-shell-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .source-shell-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .source-shell-kicker::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6d8868, var(--accent));
+      box-shadow: 0 0 0 4px rgba(109, 136, 104, 0.12);
+    }
+
+    .source-shell-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      margin: 0;
+    }
+
+    .source-shell-copy {
+      max-width: 480px;
+      margin: 6px 0 0;
+      color: var(--text-2);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .source-rule,
+    .soft-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .source-rule strong {
+      color: #ffffff;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    .soft-badge {
+      color: #ffffff;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .soft-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+
+    .source-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--accent-softer);
+      border: 1px solid var(--accent-soft);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .source-note strong {
+      color: var(--accent-deep);
+    }
+
+    .form-helper {
+      margin: 0 0 24px;
+      color: var(--text-2);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .action-hint {
+      margin: 22px 0 12px;
+      padding: 10px 14px;
+      background: var(--accent-softer);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 12.5px;
+    }
+
+    .action-hint strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .session-tiles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .session-tile {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 14px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 0;
+      box-shadow: 0 1px 0 rgba(34, 60, 40, 0.04);
+    }
+
+    .session-tile strong {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .session-tile span {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      white-space: nowrap;
+    }
+
+    .session-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .session-empty {
+      margin: 0;
+      padding: 14px;
+      text-align: center;
+      color: var(--text-3);
+      font-size: 12.5px;
+      font-style: italic;
+    }
+
+    .session-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface-2);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+      font-size: 13px;
+    }
+
+    .session-item.failed {
+      border-left-color: var(--error);
+    }
+
+    .session-item-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .session-item-title {
+      font-weight: 600;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .session-item-meta {
+      font-size: 11px;
+      color: var(--text-2);
+    }
+
+    .session-item-time {
+      font-size: 11px;
+      color: var(--text-3);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .form-section {
+      display: block;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 18px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      display: block;
+      min-height: 18px;
+      line-height: 1.3;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.1px;
+      text-transform: none;
+      color: var(--text);
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      background: #ffffff;
+      border: 1px solid #d8dcd2;
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-size: 14.5px;
+      color: var(--text);
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #9ba59b;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.12);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .advanced-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 18px 0 0;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .advanced-toggle input {
+      accent-color: var(--accent);
+    }
+
+    .advanced-toggle.premium-toggle {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-2);
+      justify-content: space-between;
+    }
+
+    .advanced-toggle-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .advanced-toggle-copy strong {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .advanced-toggle-copy span {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .advanced-group {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(66, 84, 62, 0.14);
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .advanced-group.open {
+      display: grid;
+    }
+
+    .form-actions {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .form-actions .btn {
+      min-height: 48px;
+      padding: 0 28px;
+    }
+
+    .form-actions .btn-secondary {
+      padding: 0 28px;
+    }
+
+    .workspace-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding-top: 84px;
+    }
+
+    .mail-panel-head,
+    .queue-toolbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mail-panel-head h3,
+    .queue-toolbar h3 {
+      font-size: 19px;
+      margin: 0;
+      letter-spacing: -0.35px;
+    }
+
+    .mail-panel-head p,
+    .queue-toolbar p {
+      margin: 6px 0 0;
+      color: var(--text-2);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .mail-panel-body {
+      padding: 18px 20px 20px;
+    }
+
+    .mail-preview-shell {
+      min-height: 360px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .mail-preview-meta {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mail-meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .mail-meta-row strong {
+      flex: 0 0 60px;
+      color: var(--text-2);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+
+    .mail-preview-subject {
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin-bottom: 12px;
+    }
+
+    .mail-preview-body {
+      color: var(--text-2);
+      font-size: 13.5px;
+      line-height: 1.75;
+      white-space: pre-wrap;
+    }
+
+    .queue-shell {
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(66, 84, 62, 0.1);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .filter-chip {
+      padding: 6px 12px;
+      border: 1px solid rgba(66, 84, 62, 0.12);
+      background: rgba(255, 255, 255, 0.48);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--text-2);
+    }
+
+    .filter-chip.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .activity-item {
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(66, 84, 62, 0.08);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .activity-item.sent {
+      border-left: 3px solid var(--success);
+    }
+
+    .activity-item.pending {
+      border-left: 3px solid var(--warn);
+    }
+
+    .activity-item.failed {
+      border-left: 3px solid var(--error);
+    }
+
+    .activity-item.skipped {
+      border-left: 3px solid var(--text-3);
+    }
+
+    .activity-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .activity-item-content strong {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .activity-item-content span {
+      font-size: 12px;
+      color: var(--text-2);
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .quick-stat {
+      padding: 14px 14px 12px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(66, 84, 62, 0.09);
+    }
+
+    .quick-stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--accent) 0%, #6d8868 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .quick-stat span {
+      color: var(--text-2);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .stat-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(238, 241, 229, 0.7) 100%);
+      border: 1px solid rgba(66, 84, 62, 0.09);
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent) 0%, #6d8868 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .stat-card span {
+      font-size: 11px;
+      color: var(--text-2);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .toast-area {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 360px;
+    }
+
+    .message-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--success);
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .message-item.is-error {
+      border-left-color: var(--error);
+    }
+
+    .message-item strong {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .message-item span {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .workspace-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .workspace-aside {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .workspace-shell {
+        grid-template-columns: 1fr;
+        padding: 18px 18px 60px;
+      }
+
+      .workspace-aside {
+        grid-template-columns: 1fr;
+        padding-top: 0;
+      }
+
+      .workspace-topbar {
+        flex-direction: column;
+      }
+
+      .quick-stats,
+      .metric-grid,
+      .form-grid,
+      .advanced-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="services">
+
+  <div class="app-shell" id="appShell">
+
+    <aside class="app-sidebar">
+      <div class="app-brand">
+        <div class="app-brand-mark">OS</div>
+        <div>
+          <div class="app-brand-text">Outreach Studio</div>
+          <div class="app-brand-sub">Sheets &times; Gmail</div>
+        </div>
+      </div>
+
+      <a href="/services.html" class="app-compose">
+        <span class="ico">&#9998;</span>
+        <span>Compose</span>
+      </a>
+
+      <nav class="app-nav-group">
+        <a href="/" class="app-nav-item">
+          <span class="ico">&#9737;</span>
+          <span>Overview</span>
+        </a>
+        <a href="/jobs.html" class="app-nav-item">
+          <span class="ico">&#128221;</span>
+          <span>Job Board</span>
+          <span class="count">1,470</span>
+        </a>
+        <a href="/services.html#apply" class="app-nav-item" data-tab-link="apply">
+          <span class="ico">&#128188;</span>
+          <span>Job Apply</span>
+        </a>
+        <a href="/services.html#cold" class="app-nav-item" data-tab-link="cold">
+          <span class="ico">&#9993;</span>
+          <span>Cold Email</span>
+        </a>
+      </nav>
+
+      <div class="app-sidebar-foot">
+        <div class="app-avatar">YO</div>
+        <div>
+          <div class="app-user-name">Your Studio</div>
+          <div class="app-user-mail">local mode</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="app-main">
+
+      <header class="app-topbar">
+        <button class="app-sidebar-toggle" id="sidebarToggle" aria-label="Open menu">&#9776;</button>
+        <div>
+          <div class="app-topbar-title">Services</div>
+          <span class="app-topbar-sub">compose &amp; preview outreach</span>
+        </div>
+        <label class="app-search">
+          <span class="ico">&#128269;</span>
+          <input type="search" placeholder="Search rows, drafts, companies..." />
+        </label>
+        <button class="app-topbar-btn" title="Notifications">&#128276;</button>
+        <button class="app-topbar-btn" title="Help">?</button>
+      </header>
+
+      <div class="workspace-shell">
+        <main class="workspace-main">
+          <div class="workspace-topbar" data-animate>
+            <div>
+              <h1 id="page-heading">Job Apply</h1>
+              <p id="page-sub">Fill in one or more sources. AI builds a personalized draft you can preview before
+                sending.</p>
+            </div>
+          </div>
+
+          <section class="workspace-compose" data-animate>
+            <button class="tab-btn" data-tab="apply" hidden></button>
+            <button class="tab-btn" data-tab="cold" hidden></button>
+
+            <div class="compose-body">
+              <div class="tab-pane" data-pane="cold">
+                <form id="service-form">
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label>Website</label>
+                      <input type="url" name="website" placeholder="https://acme.com" />
+                    </div>
+                    <div class="form-field">
+                      <label>Recipient email</label>
+                      <input type="email" name="recipient_email" placeholder="hello@acme.com" />
+                    </div>
+                    <div class="form-field full">
+                      <label>What you're offering *</label>
+                      <input type="text" name="service_offer" id="service-offer-input"
+                        placeholder="Email automation setup for outreach" required />
+                      <p class="helper-text">Use a website or a direct email. Your service is remembered on this device
+                        so you do not have to type it every time.</p>
+                    </div>
+                  </div>
+
+                  <label class="advanced-toggle premium-toggle">
+                    <input type="checkbox" id="service-advanced-toggle" />
+                    <div class="advanced-toggle-copy">
+                      <strong>Advanced fields</strong>
+                      <span>Add extra context when you want sharper personalization.</span>
+                    </div>
+                  </label>
+
+                  <div class="advanced-group" id="service-advanced">
+                    <div class="form-field">
+                      <label>Business name</label>
+                      <input type="text" name="business_name" placeholder="Acme Studios" />
+                    </div>
+                    <div class="form-field">
+                      <label>Recipient name</label>
+                      <input type="text" name="recipient_name" placeholder="Founder, CEO..." />
+                    </div>
+                    <div class="form-field">
+                      <label>Industry</label>
+                      <input type="text" name="industry" placeholder="SaaS, agency, e-commerce..." />
+                    </div>
+                    <div class="form-field">
+                      <label>Country</label>
+                      <input type="text" name="country" placeholder="US, UK, BD..." />
+                    </div>
+                    <div class="form-field">
+                      <label>Pain point</label>
+                      <input type="text" name="pain_point" placeholder="Manual cold outreach is slow" />
+                    </div>
+                    <div class="form-field">
+                      <label>Outreach type</label>
+                      <select name="outreach_type">
+                        <option value="cold">Cold</option>
+                        <option value="warm">Warm</option>
+                        <option value="followup">Follow-up</option>
+                      </select>
+                    </div>
+                    <div class="form-field full">
+                      <label>Custom note</label>
+                      <textarea name="custom_note" placeholder="Anything specific to mention."></textarea>
+                    </div>
+                  </div>
+
+                  <p class="action-hint"><strong>1.</strong> Preview to check the draft &nbsp;·&nbsp;
+                    <strong>2.</strong> Send it</p>
+                  <div class="form-actions">
+                    <button type="button" class="btn btn-secondary preview-trigger" data-preview="service">Preview
+                      draft</button>
+                    <button type="button" class="btn btn-primary send-now-trigger" data-send="service">Send now</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane active" data-pane="apply">
+                <form id="job-form">
+                  <p class="form-helper">Provide at least one source — company name, job link, or upload the job post
+                    file.</p>
+                  <div class="form-section">
+                    <div class="form-grid">
+                      <div class="form-field">
+                        <label>Company name</label>
+                        <input type="text" name="company_name" placeholder="Practical Khata" />
+                      </div>
+                      <div class="form-field">
+                        <label>Job title</label>
+                        <input type="text" name="job_title" placeholder="Frontend Developer" />
+                      </div>
+                      <div class="form-field full">
+                        <label>Job post link</label>
+                        <input type="url" name="job_post" placeholder="https://example.com/jobs/frontend" />
+                      </div>
+                      <div class="form-field">
+                        <label>Company website</label>
+                        <input type="url" name="website" placeholder="https://example.com" />
+                      </div>
+                      <div class="form-field">
+                        <label>Hiring email</label>
+                        <input type="email" name="recipient_email" placeholder="hiring@example.com" />
+                      </div>
+                      <div class="form-field full file-field">
+                        <label>Upload job post file</label>
+                        <input type="file" id="job-source-input" accept=".pdf,.png,.jpg,.jpeg,.webp" />
+                        <input type="hidden" name="job_post_upload_path" id="job-source-hidden" />
+                        <label class="file-pick" for="job-source-input">
+                          <span class="file-pick-icon">&#128206;</span>
+                          <span class="file-pick-name empty" id="job-source-name">Choose a job post file (PDF, PNG, JPG,
+                            WEBP)</span>
+                          <button class="file-clear" id="job-source-clear" style="display:none;"
+                            type="button">Remove</button>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="source-note">
+                      <strong>Recommended flow:</strong> if you have the exact job post link, use that first. If not,
+                      upload a post PDF or screenshot. Company website and hiring email work well as supporting or
+                      fallback sources.
+                    </div>
+                  </div>
+
+                  <label class="advanced-toggle premium-toggle">
+                    <input type="checkbox" id="job-advanced-toggle" />
+                    <div class="advanced-toggle-copy">
+                      <strong>Advanced fields</strong>
+                      <span>Add extra context only when you want a more targeted draft.</span>
+                    </div>
+                  </label>
+
+                  <div class="advanced-group" id="job-advanced">
+                    <div class="form-field">
+                      <label>Career page</label>
+                      <input type="url" name="career_page" placeholder="https://example.com/careers" />
+                    </div>
+                    <div class="form-field full">
+                      <label>Custom note</label>
+                      <textarea name="custom_note"
+                        placeholder="Highlight a specific project or skill the AI should mention."></textarea>
+                    </div>
+                  </div>
+
+                  <p class="action-hint"><strong>1.</strong> Preview to check the draft &nbsp;·&nbsp;
+                    <strong>2.</strong> Send it</p>
+                  <div class="form-actions">
+                    <button type="button" class="btn btn-secondary preview-trigger" data-preview="job">Preview
+                      draft</button>
+                    <button type="button" class="btn btn-primary send-now-trigger" data-send="job">Send now</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+
+        </main>
+
+        <aside class="workspace-aside">
+          <section class="mail-panel" data-animate>
+            <div class="mail-panel-head">
+              <div>
+                <p class="panel-title">This session</p>
+                <h3>Activity</h3>
+                <p>Since you opened the page.</p>
+              </div>
+            </div>
+            <div class="mail-panel-body">
+              <div class="session-tiles">
+                <div class="session-tile">
+                  <strong id="sess-sent">0</strong>
+                  <span>Sent</span>
+                </div>
+                <div class="session-tile">
+                  <strong id="sess-failed">0</strong>
+                  <span>Failed</span>
+                </div>
+                <div class="session-tile">
+                  <strong id="sess-last">—</strong>
+                  <span>Last sent</span>
+                </div>
+              </div>
+              <div class="session-list" id="sess-list">
+                <p class="session-empty">No emails sent yet this session.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="mail-panel" data-animate>
+            <div class="mail-panel-head">
+              <div>
+                <p class="panel-title" id="preview-kind">Draft Preview</p>
+                <h3>Reading pane</h3>
+                <p>Use the preview pane like an email reader before you run or send anything.</p>
+              </div>
+            </div>
+            <div class="mail-panel-body">
+              <div class="mail-preview-shell">
+                <div class="mail-preview-meta">
+                  <div class="mail-meta-row">
+                    <strong>Mode</strong>
+                    <span id="preview-kind-side">Compose preview</span>
+                  </div>
+                  <div class="mail-meta-row">
+                    <strong>Subject</strong>
+                    <span id="preview-subject">No draft yet - fill a form and hit preview.</span>
+                  </div>
+                </div>
+                <div class="mail-preview-body" id="preview-body"></div>
+              </div>
+            </div>
+          </section>
+
+        </aside>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast-area" id="toast-area"></div>
+
+  <script src="/assets/js/animations.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script>
+    (function () {
+      var shell = document.getElementById('appShell');
+      var toggle = document.getElementById('sidebarToggle');
+      if (toggle && shell) {
+        toggle.addEventListener('click', function () { shell.classList.toggle('sidebar-open'); });
+        shell.addEventListener('click', function (e) {
+          if (shell.classList.contains('sidebar-open') &&
+            !e.target.closest('.app-sidebar') &&
+            !e.target.closest('#sidebarToggle')) {
+            shell.classList.remove('sidebar-open');
+          }
+        });
+      }
+    })();
+
+    function activateTab(tab) {
+      if (tab !== 'apply' && tab !== 'cold') tab = 'apply';
+      document.querySelectorAll('.tab-btn').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.tab-pane').forEach((p) => p.classList.toggle('active', p.dataset.pane === tab));
+      document.querySelectorAll('.app-nav-item[data-tab-link]').forEach((a) => {
+        a.classList.toggle('active', a.dataset.tabLink === tab);
+      });
+      var pageHeading = document.getElementById('page-heading');
+      var pageSub = document.getElementById('page-sub');
+      if (pageHeading && pageSub) {
+        if (tab === 'cold') {
+          pageHeading.textContent = 'Cold Email';
+          pageSub.textContent = 'Add the recipient and your offer. AI personalizes the outreach for each business.';
+        } else {
+          pageHeading.textContent = 'Job Apply';
+          pageSub.textContent = 'Fill in one or more sources. AI builds a personalized draft you can preview before sending.';
+        }
+      }
+    }
+
+    document.querySelectorAll('.tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        activateTab(tab);
+        history.replaceState(null, '', '#' + tab);
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      activateTab((location.hash || '').replace('#', ''));
+    });
+
+    activateTab((location.hash || '#apply').replace('#', ''));
+
+    const serviceForm = document.getElementById('service-form');
+    const serviceOfferInput = document.getElementById('service-offer-input');
+    const serviceStorageKey = 'outreach-studio.service-offer';
+    const jobSourceInput = document.getElementById('job-source-input');
+    const jobSourceName = document.getElementById('job-source-name');
+    const jobSourceClear = document.getElementById('job-source-clear');
+    const jobSourceHidden = document.getElementById('job-source-hidden');
+
+    function showToast(message, type) {
+      const toast = document.getElementById('toast-area');
+      if (!toast) return;
+      const m = document.createElement('div');
+      m.className = 'message-item ' + (type === 'error' ? 'is-error' : 'is-success');
+      const head = type === 'error' ? 'Attention' : 'Updated';
+      m.innerHTML = '<strong>' + head + '</strong><span>' + message + '</span>';
+      toast.prepend(m);
+      setTimeout(() => m.remove(), 4500);
+    }
+
+    if (jobSourceInput) {
+      jobSourceInput.addEventListener('change', async () => {
+        const file = jobSourceInput.files && jobSourceInput.files[0];
+        if (!file) return;
+
+        jobSourceName.textContent = 'Uploading ' + file.name + '...';
+        jobSourceName.classList.remove('empty');
+        jobSourceClear.style.display = 'none';
+
+        try {
+          const formData = new FormData();
+          formData.append('job_source', file);
+          const r = await fetch('/api/upload-job-source', { method: 'POST', body: formData });
+          const d = await r.json();
+          if (!d.ok) throw new Error(d.message || 'Upload failed.');
+
+          jobSourceHidden.value = d.path;
+          const status = d.hasText ? ' - job text ready' : ' (uploaded - fallback source)';
+          jobSourceName.textContent = file.name + status;
+          jobSourceClear.style.display = 'inline-block';
+          const jobTitleInput = document.querySelector('#job-form input[name="job_title"]');
+          if (jobTitleInput && d.inferredJobTitle && !jobTitleInput.value.trim()) {
+            jobTitleInput.value = d.inferredJobTitle;
+          }
+          showToast('Job source uploaded. It will be used with any link or website you provide.', 'success');
+        } catch (err) {
+          jobSourceName.textContent = 'Upload failed - try again';
+          jobSourceName.classList.add('empty');
+          jobSourceHidden.value = '';
+          showToast(err.message, 'error');
+        }
+      });
+
+      jobSourceClear.addEventListener('click', (e) => {
+        e.preventDefault();
+        jobSourceInput.value = '';
+        jobSourceHidden.value = '';
+        jobSourceName.textContent = 'Choose a job post file (PDF, PNG, JPG, WEBP)';
+        jobSourceName.classList.add('empty');
+        jobSourceClear.style.display = 'none';
+      });
+    }
+
+    if (serviceOfferInput) {
+      const savedServiceOffer = localStorage.getItem(serviceStorageKey);
+      if (savedServiceOffer && !serviceOfferInput.value) {
+        serviceOfferInput.value = savedServiceOffer;
+      }
+
+      serviceOfferInput.addEventListener('input', () => {
+        const value = serviceOfferInput.value.trim();
+        if (value) {
+          localStorage.setItem(serviceStorageKey, value);
+        }
+      });
+    }
+
+    if (serviceForm) {
+      serviceForm.addEventListener('submit', () => {
+        if (!serviceOfferInput) return;
+        const value = serviceOfferInput.value.trim();
+        if (value) {
+          localStorage.setItem(serviceStorageKey, value);
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

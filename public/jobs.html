@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobs &middot; Outreach Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <style>
+    .jobs-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .jobs-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .jobs-search {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 13px;
+      min-width: 260px;
+    }
+
+    .jobs-search:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #fff;
+    }
+
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .job-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .job-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all .25s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .job-card:hover {
+      border-color: var(--accent-soft);
+      box-shadow: 0 12px 32px -16px rgba(60, 80, 55, 0.25);
+      transform: translateY(-3px);
+    }
+
+    .job-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    .job-pill {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .job-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .job-company {
+      font-size: 13px;
+      color: var(--text-2);
+      font-weight: 500;
+    }
+
+    .job-summary {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .job-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .job-tags span {
+      font-size: 11px;
+      padding: 3px 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-2);
+    }
+
+    .job-card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    .job-apply {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .job-apply:hover {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body data-page="jobs">
+
+  <div class="app-shell" id="appShell">
+
+    <aside class="app-sidebar">
+      <div class="app-brand">
+        <div class="app-brand-mark">OS</div>
+        <div>
+          <div class="app-brand-text">Outreach Studio</div>
+          <div class="app-brand-sub">Sheets &times; Gmail</div>
+        </div>
+      </div>
+
+      <a href="/services.html#apply" class="app-compose">
+        <span class="ico">&#9998;</span>
+        <span>Compose</span>
+      </a>
+
+      <nav class="app-nav-group">
+        <a href="/" class="app-nav-item">
+          <span class="ico">&#9737;</span>
+          <span>Overview</span>
+        </a>
+        <a href="/jobs.html" class="app-nav-item active">
+          <span class="ico">&#128221;</span>
+          <span>Job Board</span>
+          <span class="count">1,470</span>
+        </a>
+        <a href="/services.html#apply" class="app-nav-item">
+          <span class="ico">&#128188;</span>
+          <span>Job Apply</span>
+        </a>
+        <a href="/services.html#cold" class="app-nav-item">
+          <span class="ico">&#9993;</span>
+          <span>Cold Email</span>
+        </a>
+      </nav>
+
+      <div class="app-sidebar-foot">
+        <div class="app-avatar">YO</div>
+        <div>
+          <div class="app-user-name">Your Studio</div>
+          <div class="app-user-mail">local mode</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="app-main">
+
+      <header class="app-topbar">
+        <button class="app-sidebar-toggle" id="sidebarToggle" aria-label="Open menu">&#9776;</button>
+        <div>
+          <div class="app-topbar-title">Jobs</div>
+          <span class="app-topbar-sub">curated openings &amp; targets</span>
+        </div>
+        <label class="app-search">
+          <span class="ico">&#128269;</span>
+          <input type="search" class="jobs-search-input" placeholder="Search roles, companies, tags..." />
+        </label>
+        <button class="app-topbar-btn" title="Notifications">&#128276;</button>
+        <button class="app-topbar-btn" title="Help">?</button>
+      </header>
+
+      <main class="app-content">
+
+        <div class="page-head" data-animate>
+          <div>
+            <span class="eyebrow">Curated Openings</span>
+            <h1>Demo job board</h1>
+            <p>A sample of roles that match the kind of targets this studio queues up. Click any role to draft an
+              application from the Services dashboard.</p>
+          </div>
+        </div>
+
+        <div class="jobs-toolbar" data-animate>
+          <div class="jobs-filters">
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip">Remote</button>
+            <button class="filter-chip">Hybrid</button>
+            <button class="filter-chip">Full-time</button>
+            <button class="filter-chip">Contract</button>
+          </div>
+        </div>
+
+        <div class="job-grid" id="jobGrid">
+          <!-- Jobs will be loaded here dynamically -->
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px 20px;">
+            <p style="color: var(--text-3);">Loading latest jobs...</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/assets/js/animations.js"></script>
+  <script>
+    // Fetch and render latest jobs
+    async function loadJobs() {
+      try {
+        const response = await fetch('/api/jobs/latest');
+        if (!response.ok) throw new Error('Failed to fetch jobs');
+
+        const data = await response.json();
+        const jobs = data.jobs || [];
+        const jobGrid = document.getElementById('jobGrid');
+
+        if (!jobs.length) {
+          jobGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px 20px;"><p style="color: var(--text-3);">No jobs queued yet. Add jobs to get started!</p></div>';
+          return;
+        }
+
+        jobGrid.innerHTML = jobs.map(job => `
+        <article class="job-card" data-animate>
+          <div class="job-card-top">
+            <span class="job-pill">${job.location || 'Remote'}</span>
+            <span>Posted ${job.posted_days_ago || 'recently'}</span>
+          </div>
+          <div>
+            <h3>${job.job_title || 'Open Position'}</h3>
+            <p class="job-company">${job.company_name || 'Target Company'}</p>
+          </div>
+          <p class="job-summary">${job.custom_note || 'No description provided yet.'}</p>
+          <div class="job-tags">
+            ${job.tags && job.tags.length > 0
+            ? job.tags.map(tag => `<span>${tag}</span>`).join('')
+            : '<span>Position</span>'}
+          </div>
+          <div class="job-card-foot">
+            <span>${job.job_type || 'Full-time'}</span>
+            <a href="${job.job_post || job.career_page || '#'}" target="_blank" class="job-apply">
+              ${job.job_post || job.career_page ? 'View &rarr;' : 'View &rarr;'}
+            </a>
+          </div>
+        </article>
+      `).join('');
+      } catch (error) {
+        console.error('Error loading jobs:', error);
+        document.getElementById('jobGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px 20px;"><p style="color: var(--text-3);">Error loading jobs. Please refresh the page.</p></div>';
+      }
+    }
+
+    // Load jobs when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadJobs);
+    } else {
+      loadJobs();
+    }
+
+    (function () {
+      var shell = document.getElementById('appShell');
+      var toggle = document.getElementById('sidebarToggle');
+      if (toggle && shell) {
+        toggle.addEventListener('click', function () { shell.classList.toggle('sidebar-open'); });
+        shell.addEventListener('click', function (e) {
+          if (shell.classList.contains('sidebar-open') &&
+            !e.target.closest('.app-sidebar') &&
+            !e.target.closest('#sidebarToggle')) {
+            shell.classList.remove('sidebar-open');
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

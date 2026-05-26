@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.local
+logs/
+uploads/
+*.log
+
+# Google service account key (sensitive)
+*-f685e9c3ffa5.json
+valued-context-*.json
+*service-account*.json
+*credentials*.json
+
+# Claude Code local config
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db

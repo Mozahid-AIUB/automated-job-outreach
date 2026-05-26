@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &middot; Outreach Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+</head>
+<body data-page="home">
+
+<div class="app-shell" id="appShell">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="app-sidebar">
+    <div class="app-brand">
+      <div class="app-brand-mark">OS</div>
+      <div>
+        <div class="app-brand-text">Outreach Studio</div>
+        <div class="app-brand-sub">Sheets &times; Gmail</div>
+      </div>
+    </div>
+
+    <a href="/services.html#apply" class="app-compose">
+      <span class="ico">&#9998;</span>
+      <span>Compose</span>
+    </a>
+
+    <nav class="app-nav-group">
+      <a href="/" class="app-nav-item active">
+        <span class="ico">&#9737;</span>
+        <span>Overview</span>
+      </a>
+      <a href="/jobs.html" class="app-nav-item">
+        <span class="ico">&#128221;</span>
+        <span>Job Board</span>
+        <span class="count">1,470</span>
+      </a>
+      <a href="/services.html#apply" class="app-nav-item">
+        <span class="ico">&#128188;</span>
+        <span>Job Apply</span>
+      </a>
+      <a href="/services.html#cold" class="app-nav-item">
+        <span class="ico">&#9993;</span>
+        <span>Cold Email</span>
+      </a>
+    </nav>
+
+    <div class="app-sidebar-foot">
+      <div class="app-avatar">YO</div>
+      <div>
+        <div class="app-user-name">Your Studio</div>
+        <div class="app-user-mail">local mode</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== Main ===== -->
+  <div class="app-main">
+
+    <header class="app-topbar">
+      <button class="app-sidebar-toggle" id="sidebarToggle" aria-label="Open menu">&#9776;</button>
+      <div>
+        <div class="app-topbar-title">Dashboard</div>
+        <span class="app-topbar-sub">overview of every outreach pipeline</span>
+      </div>
+      <label class="app-search">
+        <span class="ico">&#128269;</span>
+        <input type="search" placeholder="Search rows, companies, drafts..." />
+      </label>
+      <button class="app-topbar-btn" title="Notifications">&#128276;</button>
+      <button class="app-topbar-btn" title="Help">?</button>
+    </header>
+
+    <main class="app-content">
+
+      <div class="page-head" data-animate>
+        <div>
+          <span class="eyebrow">Live workspace</span>
+          <h1>Welcome back.</h1>
+          <p>Drop rows into your sheet, let the studio scan and draft, then preview every message before a single one leaves your inbox.</p>
+        </div>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="/jobs.html">Open Jobs <span class="btn-arrow">&rarr;</span></a>
+          <a class="btn btn-secondary" href="/services.html">Services</a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <section class="stat-row">
+        <div class="stat-tile" data-animate>
+          <div class="stat-tile-head"><span>Total Rows</span><span class="stat-tile-icon">&#128196;</span></div>
+          <strong>250</strong>
+          <span class="delta">+12 this week</span>
+        </div>
+        <div class="stat-tile" data-animate>
+          <div class="stat-tile-head"><span>Pending</span><span class="stat-tile-icon">&#9202;</span></div>
+          <strong>112</strong>
+          <span class="delta">queued for next run</span>
+        </div>
+        <div class="stat-tile" data-animate>
+          <div class="stat-tile-head"><span>Emails Sent</span><span class="stat-tile-icon">&#9993;</span></div>
+          <strong>95</strong>
+          <span class="delta">+8 today</span>
+        </div>
+        <div class="stat-tile" data-animate>
+          <div class="stat-tile-head"><span>Replied</span><span class="stat-tile-icon">&#128172;</span></div>
+          <strong>32</strong>
+          <span class="delta">34% reply rate</span>
+        </div>
+      </section>
+
+      <!-- Recent Applications -->
+      <section class="data-panel" data-animate>
+        <div class="data-panel-head">
+          <h2>Recent Applications</h2>
+          <div class="filters" style="margin:0;">
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip">Sent</button>
+            <button class="filter-chip">Pending</button>
+            <button class="filter-chip">Replied</button>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Position</th>
+              <th>Status</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TechNova</strong></td>
+              <td>Full Stack Developer</td>
+              <td><span class="status-pill sent">Email Sent</span></td>
+              <td>May 24, 2026</td>
+            </tr>
+            <tr>
+              <td><strong>InnoSoft</strong></td>
+              <td>Backend Engineer</td>
+              <td><span class="status-pill pending">Pending</span></td>
+              <td>May 24, 2026</td>
+            </tr>
+            <tr>
+              <td><strong>CloudScale</strong></td>
+              <td>SWE Intern</td>
+              <td><span class="status-pill replied">Replied</span></td>
+              <td>May 23, 2026</td>
+            </tr>
+            <tr>
+              <td><strong>DataFlow</strong></td>
+              <td>Data Analyst</td>
+              <td><span class="status-pill sent">Email Sent</span></td>
+              <td>May 23, 2026</td>
+            </tr>
+            <tr>
+              <td><strong>Webify</strong></td>
+              <td>Frontend Developer</td>
+              <td><span class="status-pill pending">Pending</span></td>
+              <td>May 22, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- How it works (compact) -->
+      <section class="section" style="padding: 40px 0 0; max-width: none;">
+        <div class="section-header" data-animate>
+          <span class="section-label">How it works</span>
+          <h2 data-split-text>Four steps, every time.</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="step" data-animate>
+            <div class="step-num">1</div>
+            <h3>Fill a row in your sheet</h3>
+            <p>Or use the dashboard form. Status defaults to <strong>pending</strong> &mdash; that's all the script looks at.</p>
+          </div>
+          <div class="step" data-animate>
+            <div class="step-num">2</div>
+            <h3>Studio scans &amp; drafts</h3>
+            <p>Scanner finds careers pages, openings, and public contact emails. AI writes a personalized draft per row.</p>
+          </div>
+          <div class="step" data-animate>
+            <div class="step-num">3</div>
+            <h3>Preview in the dashboard</h3>
+            <p>Read the subject and body. Adjust the row, regenerate, or move on.</p>
+          </div>
+          <div class="step" data-animate>
+            <div class="step-num">4</div>
+            <h3>Send &amp; track</h3>
+            <p>Switch to send mode. Sheet rows update to <strong>sent</strong>, <strong>failed</strong>, or <strong>skipped</strong> with timestamps.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="/assets/js/animations.js"></script>
+<script>
+  (function () {
+    var shell = document.getElementById('appShell');
+    var toggle = document.getElementById('sidebarToggle');
+    if (toggle && shell) {
+      toggle.addEventListener('click', function () { shell.classList.toggle('sidebar-open'); });
+      shell.addEventListener('click', function (e) {
+        if (shell.classList.contains('sidebar-open') &&
+            !e.target.closest('.app-sidebar') &&
+            !e.target.closest('#sidebarToggle')) {
+          shell.classList.remove('sidebar-open');
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>
